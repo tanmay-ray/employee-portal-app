@@ -1,0 +1,5 @@
+<ng-container *ngIf="!loading">
+    <ng-container *ngFor="let employee of employees">
+        <div>{{employee|json}}</div>
+    </ng-container>
+</ng-container>

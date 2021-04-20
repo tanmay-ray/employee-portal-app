@@ -1,0 +1,30 @@
+<p class="h4 mb-4">Sign up</p>
+<form [formGroup]="registerForm">
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+            <input type="text" formControlName="firstName" />
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            <input type="text" formControlName="lastName" />
+        </div>
+    </div>
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- Department -->
+            <input type="text" formControlName="department" />
+        </div>
+        <div class="col">
+            <!-- Password -->
+            <input type="date" formControlName="dob" />
+        </div>
+    </div>
+    <div class="form-control mb-3">
+        <input type="radio" [(ngModel)]="createEmployeeModel.gender" name="gender" value="Male" required> Male
+        <input type="radio" [(ngModel)]="createEmployeeModel.gender" name="gender" value="Female" required> Female
+    </div>
+</form>
+
+<button class="btn btn-secondary btn-sm" routerLink="">Back</button>
+<button class="btn btn-primary btn-sm" (click)="createEmployee()" [disabled]="registerForm.invalid">Sign up</button>
