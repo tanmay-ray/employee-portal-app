@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
     this.employeeService.register(employee)
       .pipe(finalize(() => this.loading = false))
       .subscribe(
-        () => { this.success = true; this.registerForm.reset({}); },
+        () => { this.success = true; this.registerForm.reset(); },
         () => { this.error = true; }
       );
   }

@@ -1,35 +1,41 @@
 <button class="btn btn-secondary back-btn" routerLink="../">Back</button>
 
 <div class="d-flex flex-column align-items-center">
-    <h1>Employees</h1>
-
     <ng-container *ngIf="!loading">
-        <div class="header w-100">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">First Name</div>
-                        <div class="col">Last Name</div>
-                        <div class="col">Gender</div>
-                        <div class="col">Department</div>
-                        <div class="col">Date of birth</div>
+        <ng-container *ngIf="employees?.length; else noEmployees">
+            <h1>Employees</h1>
+
+            <div class="header w-100">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">First Name</div>
+                            <div class="col">Last Name</div>
+                            <div class="col">Gender</div>
+                            <div class="col">Department</div>
+                            <div class="col">Date of birth</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <ng-container *ngFor="let employee of employees">
-            <div class="card content w-100">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">{{employee.firstName}}</div>
-                        <div class="col">{{employee.lastName}}</div>
-                        <div class="col">{{employee.gender}}</div>
-                        <div class="col">{{employee.department}}</div>
-                        <div class="col">{{employee.dob | date}}</div>
+            <ng-container *ngFor="let employee of employees">
+                <div class="card content w-100">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">{{employee.firstName}}</div>
+                            <div class="col">{{employee.lastName}}</div>
+                            <div class="col">{{employee.gender}}</div>
+                            <div class="col">{{employee.department}}</div>
+                            <div class="col">{{employee.dob | date}}</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div></div>
+                <div></div>
+            </ng-container>
         </ng-container>
     </ng-container>
 </div>
+
+<ng-template #noEmployees>
+    <h1 id="no-employee">There are no employees to display</h1>
+</ng-template>

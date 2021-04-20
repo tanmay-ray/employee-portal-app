@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { of, throwError } from 'rxjs';
 import { Employee } from '../model/employee';
 import { EmployeeService } from '../service/employee.service';
@@ -24,6 +25,7 @@ describe('RegisterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule],
       declarations: [RegisterComponent],
       providers: [
         { provide: EmployeeService, useClass: EmployeeServiceMock }
@@ -35,7 +37,7 @@ describe('RegisterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
-    createEmployeeSpy = spyOn(TestBed.inject(EmployeeService), 'register');
+    createEmployeeSpy = spyOn(TestBed.inject(EmployeeService), 'register').and.callThrough();
     fixture.detectChanges();
   });
 
@@ -77,7 +79,13 @@ describe('RegisterComponent', () => {
 
     it('should clear registration form on employee creation', () => {
       component.createEmployee();
-      expect(component.registerForm.value).toEqual({});
+      expect(component.registerForm.value).toEqual({
+        firstName: null,
+        lastName: null,
+        gender: null,
+        department: null,
+        dob: null
+      });
     });
 
     it('should clear previous failure alert, if present, on employee creation', () => {
@@ -103,7 +111,7 @@ describe('RegisterComponent', () => {
 
     it('should not clear registration form on employee creation failure', () => {
       component.createEmployee();
-      expect(component.registerForm.value).toBe(mockEmployee);
+      expect(component.registerForm.value).toEqual(mockEmployee);
     });
 
     it('should clear previous success alert, if present, on employee creation failure', () => {
