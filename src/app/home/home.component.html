@@ -1,7 +1,22 @@
-<h1>Employee Portal</h1>
-<a routerLink="register">
-    <div>Create new employee</div>
-</a>
-<a routerLink="employees">
-    <div>View Employees</div>
-</a>
+<div class="d-flex flex-column align-items-center">
+    <h1>Employee Portal</h1>
+
+    <div class="row row-cols-2 mt-5">
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body" routerLink="../register">
+                    <h3 class="card-title">Create new employee</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100" routerLink="../employees">
+                <div class="card-body">
+                    <h3 class="card-title">View Employees</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

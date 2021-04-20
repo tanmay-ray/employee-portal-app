@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { finalize } from 'rxjs/operators';
+import { Employee } from '../model/employee';
 import { EmployeeService } from '../service/employee.service';
 
 @Component({
@@ -9,6 +11,9 @@ import { EmployeeService } from '../service/employee.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  success = false;
+  error = false;
+  loading = false;
 
   constructor(private fb: FormBuilder, private employeeService: EmployeeService) { }
 
@@ -23,7 +28,20 @@ export class RegisterComponent implements OnInit {
   }
 
   createEmployee() {
-    this.employeeService.register(this.registerForm.value).subscribe();
+    this.loading = true;
+    this.resetFlags();
+    const employee: Employee = this.registerForm.value;
+    
+    this.employeeService.register(employee)
+      .pipe(finalize(() => this.loading = false))
+      .subscribe(
+        () => { this.success = true; this.registerForm.reset({}); },
+        () => { this.error = true; }
+      );
+  }
+
+  resetFlags() {
+    this.success = this.error = false;
   }
 
 }

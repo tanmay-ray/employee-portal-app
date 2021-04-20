@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-image: linear-gradient(30deg, rgba(60, 133, 217, 1), rgba(97, 178, 78, 0.73));
+    background-attachment: fixed; 
+}
+
+.back-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+.card {
+    background-color: whitesmoke;
+}
